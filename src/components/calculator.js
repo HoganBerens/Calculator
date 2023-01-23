@@ -15,6 +15,7 @@ const Calculator = () => {
     [updatedNumber]
   );
 
+  // handle symbol - remove this line
   const handleSymbol = useCallback(
     (symbol) => {
       setFirstNumber(updatedNumber);
