@@ -5,7 +5,7 @@ const Calculator = () => {
   const [updatedNumber, setUpdatedNumber] = useState("");
   const [firstNumber, setFirstNumber] = useState("");
   const [mathSymbol, setMathSymbol] = useState("");
-  const [displayValue, setDisplayValue] = useState("");
+  const [displayValue, setDisplayValue] = useState("0");
 
   const handleNumber = useCallback(
     (number) => {
@@ -31,21 +31,25 @@ const Calculator = () => {
     switch (mathSymbol) {
       case "+":
         setDisplayValue(num1 + num2);
+        setUpdatedNumber(num1 + num2);
         break;
       case "-":
         setDisplayValue(num1 - num2);
+        setUpdatedNumber(num1 - num2);
         break;
       case "*":
         setDisplayValue(num1 * num2);
+        setUpdatedNumber(num1 * num2);
         break;
       case "/":
         setDisplayValue(num1 / num2);
+        setUpdatedNumber(num1 / num2);
         break;
     }
-  }, [firstNumber, updatedNumber, mathSymbol]);
+  }, [firstNumber, displayValue, updatedNumber, mathSymbol]);
 
   const handleClear = () => {
-    setDisplayValue("");
+    setDisplayValue("0");
     setMathSymbol("");
     setUpdatedNumber("");
     setFirstNumber("");
@@ -53,24 +57,42 @@ const Calculator = () => {
 
   return (
     <div className="container">
-      <div className="buttons-wrapper">
+      <div className="calculator-boundary">
         <div className="display">{displayValue}</div>
-        {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].map((number) => (
-          <button className="numbers" onClick={handleNumber.bind(this, number)}>
-            {number}
+        <div className="buttons-wrapper">
+          <div className="numbers-wrapper">
+            {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].map(
+              (number, index) => (
+                <button
+                  key={index}
+                  className="numbers"
+                  onClick={handleNumber.bind(this, number)}
+                >
+                  {number}
+                </button>
+              )
+            )}
+          </div>
+          <div className="operator-wrapper">
+            {["+", "-", "*", "/"].map((symbol, index) => (
+              <button
+                key={index}
+                className="symbols"
+                onClick={handleSymbol.bind(this, symbol)}
+              >
+                {symbol}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="special-symbols-container">
+          <button className="clear" onClick={handleClear}>
+            Clear
           </button>
-        ))}
-        {["+", "-", "*", "/"].map((symbol) => (
-          <button className="symbols" onClick={handleSymbol.bind(this, symbol)}>
-            {symbol}
+          <button className="equals" onClick={handleEquals}>
+            =
           </button>
-        ))}
-        <button className="symbols" onClick={handleEquals}>
-          =
-        </button>
-        <button className="symbols" onClick={handleClear}>
-          Clear
-        </button>
+        </div>
       </div>
     </div>
   );
