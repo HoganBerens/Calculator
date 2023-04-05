@@ -4,7 +4,7 @@
   width: 100vw;
   justify-content: center;
   align-items: center;
-  background-color: #efe2ba;
+  background-color: rgb(206, 206, 206);
 }
 .calculator-boundary {
   max-width: 400px;
@@ -31,6 +31,10 @@
 .numbers {
   font-size: 28px;
   width: 99px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .operator-wrapper {
   display: flex;
@@ -41,12 +45,14 @@
   width: 99px;
   background-color: #4056a1;
   height: 25%;
+  border-radius: 10px;
   color: white;
 }
 .special-symbols-container {
   display: flex;
   width: 400px;
 }
+
 .clear {
   font-size: 28px;
   width: 301px;
@@ -61,4 +67,5 @@
   background-color: #4056a1;
   height: 100px;
   color: white;
+  border-radius: 10px;
 }
